@@ -3,7 +3,8 @@ include ../Make.defines
 PROGS =	tcpcli01 tcpcli04 tcpcli05 tcpcli06 \
 		tcpcli07 tcpcli08 tcpcli09 tcpcli10 \
 		tcpserv01 tcpserv02 tcpserv03 tcpserv04 \
-		tcpserv08 tcpserv09 tcpservselect01 tcpservpoll01 tsigpipe
+		tcpserv08 tcpserv09 tcpservselect01 tcpservpoll01 tsigpipe \
+		tcp_svr_forward
 
 all:	${PROGS}
 
@@ -62,6 +63,10 @@ tcpservpoll01:	tcpservpoll01.o
 
 tsigpipe:	tsigpipe.o
 		${CC} ${CFLAGS} -o $@ tsigpipe.o ${LIBS}
+
+tcp_svr_forward:	tcp_svr_forward.o str_forward.o
+		${CC} ${CFLAGS} -o $@ tcp_svr_forward.o str_forward.o ${LIBS}
+
 
 clean:
 		rm -f ${PROGS} ${CLEANFILES}
